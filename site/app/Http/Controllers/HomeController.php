@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use App\Models\User;
 use App\Models\VisitorModel;//model worting new style
+use App\Models\ServicesModel;
 use Illuminate\Http\Request;
 //use App\VisitorModel;
 class HomeController extends Controller
@@ -16,8 +17,8 @@ class HomeController extends Controller
 
         VisitorModel::insert(['ip_address'=>$UserIP,'visit-time'=>$timeDate]);
 
+        $ServicesData=json_decode(ServicesModel::all());
 
-
-        return view('Home');
+        return view('Home',['ServicesData'=>$ServicesData]);
     }
 }
